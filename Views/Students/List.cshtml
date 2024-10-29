@@ -9,14 +9,16 @@
         </tr>
     </thead>
     <tbody>
-        @foreach(var student in Model)
-        {
-<tr>
+@foreach(var student in Model)
+{
+     <tr>
     <td>@student.Id</td>
     <td>@student.Name</td>
     <td>@student.Email</td>
-    <a>Edit</a>
-</tr>
-        }
+    <td>
+   <a class="btn btn-primary" asp-asp-controller="Students" asp-action="Edit" asp-asp-route-id="@student.Id">Edit</a>
+    </td>
+     </tr>
+}
     </tbody>
 </table>
