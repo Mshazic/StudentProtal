@@ -1,5 +1,7 @@
+using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using StudentPortal.Models;
 
 public class StudentsController : Controller
 {
@@ -37,8 +39,8 @@ public class StudentsController : Controller
   
    [HttpGet]
    public async Task<IActionResult> Edit(Guid id)
-   {
-     var student = await dbContext.Students.FindAsync(id);
+    {
+     var student = await dbContext.Students.FirstOrDefaultAsync();
      return View(student);
 
    }

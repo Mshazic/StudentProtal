@@ -1,5 +1,9 @@
-public class AddStudentViewModel
+
+namespace StudentPortal.Models
 {
-     public string? Name { get; set; }
-    public string? Email { get; set; } 
+    public class AddStudentViewModel
+    {
+        public string? Name { get; set; }
+        public string? Email { get; set; }
+    }
 }
