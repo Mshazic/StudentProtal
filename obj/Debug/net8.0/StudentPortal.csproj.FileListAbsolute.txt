@@ -1,0 +1,9 @@
+/Users/senzonzuza/Projects/StudentPortal/obj/Debug/net8.0/StudentPortal.csproj.AssemblyReference.cache
+/Users/senzonzuza/Projects/StudentPortal/obj/Debug/net8.0/StudentPortal.GeneratedMSBuildEditorConfig.editorconfig
+/Users/senzonzuza/Projects/StudentPortal/obj/Debug/net8.0/StudentPortal.AssemblyInfoInputs.cache
+/Users/senzonzuza/Projects/StudentPortal/obj/Debug/net8.0/StudentPortal.AssemblyInfo.cs
+/Users/senzonzuza/Projects/StudentPortal/obj/Debug/net8.0/StudentPortal.csproj.CoreCompileInputs.cache
+/Users/senzonzuza/Projects/StudentPortal/obj/Debug/net8.0/StudentPortal.MvcApplicationPartsAssemblyInfo.cache
+/Users/senzonzuza/Projects/StudentPortal/obj/Debug/net8.0/StudentPortal.RazorAssemblyInfo.cache
+/Users/senzonzuza/Projects/StudentPortal/obj/Debug/net8.0/StudentPortal.RazorAssemblyInfo.cs
+/Users/senzonzuza/Projects/StudentPortal/obj/Debug/net8.0/StudentPortal.sourcelink.json
