@@ -1,12 +1,11 @@
-using System;
+using System.Data;
 using Microsoft.EntityFrameworkCore;
-using Student.Models;
-
+using StudentPortal.Models;
 public class AppDbcontext : DbContext
 {
     public AppDbcontext(DbContextOptions<AppDbcontext> options): base(options)
     {
         
     }
-    public Dbset<Student> Students { get; set; }
+    public DbSet<Student>? Students { get; set; }
 }
