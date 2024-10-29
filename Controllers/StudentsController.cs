@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 public class StudentsController : Controller
 {
@@ -26,4 +27,13 @@ public class StudentsController : Controller
 
         return View();
     }
+
+    [HttpGet]
+    public async Task<IActionResult> List()
+    {
+        var students = await dbContext.Students.ToListAsync();
+        return View(students);
+    }
+  
+
 }
