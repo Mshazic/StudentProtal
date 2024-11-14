@@ -12,6 +12,9 @@ public class AppDbcontext : DbContext
     public DbSet<Student>? Students { get; set; }
     //Accounts
 
+    public DbSet<StudentUser>? StudentUserAccounts { get; set; }
+
+
     public DbSet<UserAccount>? UserAccount { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
