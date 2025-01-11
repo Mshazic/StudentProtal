@@ -1,0 +1,22 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using StudentPortal.Models.StudentAccountEntity;
+@inject SignInManager<StudentUser> sigInManager
+
+<ul class="navbar-nav ms-auto">
+    @if (false)
+        {
+            <li class="nav-item">StudentUSerAccountController
+                <a class="nav-link text-dark" asp-controller="StudentUSerAccountController" asp-action="Logout">Logout</a>
+            </li>
+        }
+        else
+        {
+<li class="nav-item">
+    <a class="nav-link text-dark" asp-controller="Account" asp-action="Login">Login</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link text-dark" asp-controller="Account" asp-action="Register">Register</a>
+
+</li>
+        }
+</ul> 
