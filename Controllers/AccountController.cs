@@ -28,15 +28,6 @@ namespace StudentPortal.Controllers
             this.studentUserManager = studentUserManager;
         }
         // GET: /<controller>/
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult Register()
-        {
-            return View();
-        }
 
         [HttpPost]
         public async Task<IActionResult> RegisterAsync(RegisterStudentUserViewModel model)
@@ -75,9 +66,21 @@ namespace StudentPortal.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> LoginAsync()
+        public async Task<IActionResult> LoginAsync(LoginStudentUserViewModel model)
         {
-         
+            if (ModelState.IsValid)
+            {
+                var result = await signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe,false);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Email or Password is incorrect.");
+                    return View(model);
+                }
+            }
             return View();
         }
 
@@ -88,11 +91,25 @@ namespace StudentPortal.Controllers
         }
 
         [HttpPost]
-      //  public async Task<IActionResult> VerifyEmail()
-       // {
-          
-        //    return View();
-       // }
+        public async Task<IActionResult> VerifyEmail(VerifyStudentUserViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await studentUserManager.FindByNameAsync(model.Email);
+                if (user == null)
+                {
+                    ModelState.AddModelError("", "Something went wrong");
+                    return View(model);
+
+                }
+                else
+                {
+                    return RedirectToAction("ChangePassword", "Account", new { Username = user.UserName });
+                }
+
+            }
+            return View(model);
+        }
 
        
 
