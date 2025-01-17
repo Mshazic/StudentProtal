@@ -5,9 +5,12 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using StudentPortal.Models;
 using StudentPortal.Models.StudentAccountEntity;
+using StudentPortal.ViewModel;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -15,53 +18,55 @@ namespace StudentPortal.Controllers
 {
     public class AccountController : Controller
     {
+        private readonly SignInManager<StudentUser> signInManager;
+        private readonly UserManager<StudentUser> studentUserManager;
         private readonly AppDbcontext dbContext;
-        public AccountController(AppDbcontext dbContext)
+        public AccountController(AppDbcontext dbContext, SignInManager<StudentUser> signInManager, UserManager<StudentUser> studentUserManager)
         {
             this.dbContext = dbContext;
+            this.signInManager = signInManager;
+            this.studentUserManager = studentUserManager;
         }
         // GET: /<controller>/
         public IActionResult Index()
         {
-            return View(dbContext.UserAccount.ToList());
+            return View();
         }
 
-        public IActionResult Registration()
+        public IActionResult Register()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult Registration(RegistrationViewModel model)
+        public async Task<IActionResult> RegisterAsync(RegisterStudentUserViewModel model)
         {
             if (ModelState.IsValid)
             {
-                UserAccount account = new UserAccount();
-                account.Email = model.Email;
-                account.FirstName = model.FirstName;
-                account.LastName = model.LastName;
-                account.Password = model.Password;
-                account.UserName = model.UserName;
-
-                try
+                StudentUser studentUser = new StudentUser
                 {
-                    dbContext.UserAccount.Add(account);
-                    dbContext.SaveChanges();
+                    FullName = model.Name,
+                    Email = model.Email,
+                    UserName = model.Email,
 
-                    ModelState.Clear();
-                    ViewBag.Message = $"{account.FirstName} {account.LastName} Registered successfully.Please Login";
+                };
 
+                var result = await studentUserManager.CreateAsync(studentUser, model.Password);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Login", "Account");
                 }
-                catch (DbUpdateException ex)
+                else
                 {
-                    ModelState.AddModelError("", "Please enter unique Email or Password");
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError("", error.Description);
+                    }
                     return View(model);
                 }
-                
-                return View();
+
             }
-          
-            return View(model);
+            return View();
         }
 
         public IActionResult Login()
@@ -70,44 +75,38 @@ namespace StudentPortal.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(LogInViewModel model)
+        public async Task<IActionResult> LoginAsync()
         {
-            if (ModelState.IsValid)
-            {
-                var user = dbContext.UserAccount.Where(x => (x.UserName == model.UserNameOrEmail || x.Email == model.UserNameOrEmail) && x.Password == model.Password).FirstOrDefault();
-                if (user != null)
-                {
-                    //Success creat cookie
-                    var claims = new List<Claim>
-                    {
-                        new Claim(ClaimTypes.Name, user.Email),
-                        new Claim("Name", user.FirstName),
-                        new Claim(ClaimTypes.Role,"User"),
-                    };
-
-                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                    HttpContent.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
-
-                    return RedirectToAction("SecurePage");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Username/Email or Password is not correct");
-                }
-            }
-            return View(model);
-        }
-        public IActionResult LogOut()
-        {
-            HttpContent.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-
-            return RedirectToAction("Index");
-        }
-        [Authorize]
-        public IActionResult SecurePage()
-        {
-            ViewBag.Name = HttpContent.User.Identity.Name;
+         
             return View();
+        }
+
+
+        public IActionResult VerifyEmail()
+        {
+            return View();
+        }
+
+        [HttpPost]
+      //  public async Task<IActionResult> VerifyEmail()
+       // {
+          
+        //    return View();
+       // }
+
+       
+
+        [HttpPost]
+        public async Task<IActionResult> ChangePassword()
+        {
+
+            return  View();
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            await signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
         }
     }
 }
