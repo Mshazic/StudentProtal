@@ -1,8 +1,93 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
+<!--
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+    Bootstrap CSS 
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEJZk6U+9wW8W+K6eXK6yk0AfHgi1JmVe0vJgBMyQeDNT7fVZ6OdXNzhSREU" crossorigin="anonymous">
+ Custom CSS 
+<link rel="stylesheet" href="styles.css">
+</head>-->
+<!-- Navbar
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="#">Brand</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#hero">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#features">Features</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#contact">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>-->
+
+<body>
+    <!-- Hero Section -->
+    <section id="hero" class="d-flex justify-content-center align-items-center text-center" style="height: 100vh; background-color: #f8f9fa;">
+        <div class="container">
+            <h1 class="display-4">Welcome to Our Landing Page</h1>
+            <img class="responsive-image" src="/Image/school.jpg "border="0" alt="logo" />
+            <p class="lead">We provide amazing solutions to make your life easier!</p>
+            <a href="#features" class="btn btn-primary btn-lg">Learn More</a>
+        </div>
+    </section>
+    <!-- Features Section -->
+    <section id="features" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h3>Feature 1</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+                <div class="col-md-4">
+                    <h3>Feature 2</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+                <div class="col-md-4">
+                    <h3>Feature 3</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <p>&copy; 2025 Your Company. All rights reserved.</p>
+        </div>
+    </footer>
+    <script>document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });</script>
+
+    <!-- Page Content Goes Here -->
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0x1QWhg6JttoPbFsb5WgI7Fdq1sojViBh5TrxO1tBf6Gk3zE" crossorigin="anonymous"></script>
+</body>
+</html>

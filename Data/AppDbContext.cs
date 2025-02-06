@@ -9,9 +9,12 @@ public class AppDbcontext : DbContext
     {
         
     }
+    //this is when I create the user when I have logged in as admin
+    // Admin functionality still coming
     public DbSet<Student>? Students { get; set; }
-    //Accounts
 
+    //Accounts
+    //This is when i register a user
     public DbSet<StudentUser>? StudentUserAccounts { get; set; }
 
 

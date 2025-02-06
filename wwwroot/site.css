@@ -20,17 +20,19 @@ html {
 body {
     margin-bottom: 60px;
     background-color: aliceblue;
-    width: 100%;
-    height: auto;
+    background-image: url("/Images/school.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat-y;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem 0;
+    background-color: aliceblue;
 }
 
-.responsive-image {
-  
-    width: 100%;
-    height: auto;
-    background-size: 100% 100% cover;
-}
-.account-container {
+﻿.account-container {
     background-image: url("/Images/school.jpg");
     background-size: cover;
     background-position: center;

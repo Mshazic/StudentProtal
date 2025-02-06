@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using StudentPortal.Models;
 using StudentPortal.Models.StudentAccountEntity;
 using StudentPortal.ViewModel;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -29,6 +30,10 @@ namespace StudentPortal.Controllers
         }
         // GET: /<controller>/
 
+        public IActionResult Register()
+        {
+            return View();
+        }
         [HttpPost]
         public async Task<IActionResult> RegisterAsync(RegisterStudentUserViewModel model)
         {
@@ -111,14 +116,55 @@ namespace StudentPortal.Controllers
             return View(model);
         }
 
-       
+
+
+        public IActionResult ChangePassword()
+        {
+            return View();
+        }
 
         [HttpPost]
-        public async Task<IActionResult> ChangePassword()
+        public async Task<IActionResult> ChangePassword( ChangePasswordStudentUserViewModel model )
         {
+            if (ModelState.IsValid)
+            {
+                var user = await studentUserManager.FindByNameAsync(model.Email);
+                if (user != null)
+                {
 
-            return  View();
+                    var result = await studentUserManager.RemovePasswordAsync(user);
+                    if (result.Succeeded)
+                    {
+                        result = await studentUserManager.AddPasswordAsync(user, model.NewPassword);
+
+                        return RedirectToAction("Login", "Account");
+
+                    }
+                    else
+                    {
+                        foreach (var error in result.Errors)
+                        {
+                            ModelState.AddModelError("", error.Description);
+                        }
+                        return View(model);
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Email not found!!");
+                    return View(model);
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("", "Something Went Wrong. try again");
+                return View(model);
+
+            }
+
+            
         }
+
 
         public async Task<IActionResult> Logout()
         {
