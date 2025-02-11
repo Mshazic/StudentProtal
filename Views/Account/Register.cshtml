@@ -1,48 +1,96 @@
 ﻿@using StudentPortal.ViewModel;
 @model RegisterStudentUserViewModel;
-    
+
     @{
 
         ViewData["Title"] = "Register";
         Layout = "~/Views/Shared/_AccountLayout.cshtml";
     }
+    <!--
+        <div class="account-container">
+            <div class="account-box">
+                <h2 class="text-center mb-4">Register</h2>
+                <form asp-action="Register" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="mb-3">
+                        <label asp-for="Name" class="form-label"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Password" class="form-label"></label>
+                        <input asp-for="Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="ConfirmPassword" class="form-label"></label>
+                        <input asp-for="ConfirmPassword" class="form-control" />
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                    </div>
+                    <input type="submit" value="Register" class="btn btn-success w-100 p-2" />
+                    <p class="text-center mt-2">
+                        Already have an account? <a asp-controller="Account" asp-action="Login" class="text-decoration-none">Login</a>
+                    </p>
+                    <div class="text-center">
+                        <a asp-controller="Home" asp-action="Index" class="text-decoration-none mt-3">Back</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    -->
+<section class="vh-100">
+    <div class="container-fluid h-custom">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-md-9 col-lg-6 col-xl-5">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+                     class="img-fluid" alt="Sample image">
+            </div>
+            <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                <form>
+                    <!-- Name input -->
+                    <div data-mdb-input-init class="form-outline mb-4">
+                        <input asp-for="Name" id="form3Example3" class="form-control form-control-lg" placeholder="Name" />
+                        <label class="form-label" for="form3Example3">Name</label>
+                    </div>
+                    <!-- Email input -->
+                    <div data-mdb-input-init class="form-outline mb-4">
+                        <input asp-for="Email" type="email" id="form3Example3" class="form-control form-control-lg"
+                               placeholder="Enter a valid email address" />
+                        <label class="form-label" for="form3Example3">Email address</label>
+                    </div>
 
-    <div class="account-container">
-        <div class="account-box">
-            <h2 class="text-center mb-4">Register</h2>
-            <form asp-action="Register" method="post">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="mb-3">
-                    <label asp-for="Name" class="form-label"></label>
-                    <input asp-for="Name" class="form-control" />
-                    <span asp-validation-for="Name" class="text-danger"></span>
-                </div>
-                <div class="mb-3">
-                    <label asp-for="Email" class="form-label"></label>
-                    <input asp-for="Email" class="form-control" />
-                    <span asp-validation-for="Email" class="text-danger"></span>
-                </div>
-                <div class="mb-3">
-                    <label asp-for="Password" class="form-label"></label>
-                    <input asp-for="Password" class="form-control" />
-                    <span asp-validation-for="Password" class="text-danger"></span>
-                </div>
-                <div class="mb-3">
-                    <label asp-for="ConfirmPassword" class="form-label"></label>
-                    <input asp-for="ConfirmPassword" class="form-control" />
-                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-                </div>
-                <input type="submit" value="Register" class="btn btn-success w-100 p-2" />
-                <p class="text-center mt-2">
-                    Already have an account? <a asp-controller="Account" asp-action="Login" class="text-decoration-none">Login</a>
-                </p>
-                <div class="text-center">
-                    <a asp-controller="Home" asp-action="Index" class="text-decoration-none mt-3">Back</a>
-                </div>
-            </form>
+                    <!-- Password input -->
+                    <div data-mdb-input-init class="form-outline mb-3">
+                        <input asp-for="Password" type="password" id="form3Example4" class="form-control form-control-lg"
+                               placeholder="Enter password" />
+                        <label class="form-label" for="form3Example4">Password</label>
+                    </div>
+                    <!-- Confrim Password -->
+                    <div data-mdb-input-init class="form-outline mb-3">
+                        <input asp-for="ConfirmPassword" type="password" id="form3Example4" class="form-control form-control-lg"
+                               placeholder="Confrim password" />
+                        <label class="form-label" for="form3Example4">Password</label>
+                    </div>
+
+
+                    <input type="submit" value="Register" class="btn btn-success w-100 p-2" />
+                    <p class="text-center mt-2">
+                        Already have an account? <a asp-controller="Account" asp-action="Login" class="text-decoration-none">Login</a>
+                    </p>
+                    <div class="text-center">
+                        <a asp-controller="Home" asp-action="Index" class="text-decoration-none mt-3">Back</a>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
+</section>
     @section Scripts {
         @{
             await Html.RenderPartialAsync("_ValidationScriptsPartial.cshtml");
