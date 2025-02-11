@@ -51,17 +51,23 @@
                      class="img-fluid" alt="Sample image">
             </div>
             <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                <h2 class="text-center mb-4">Register</h2>
                 <form>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <!-- Name input -->
                     <div data-mdb-input-init class="form-outline mb-4">
                         <input asp-for="Name" id="form3Example3" class="form-control form-control-lg" placeholder="Name" />
                         <label class="form-label" for="form3Example3">Name</label>
+                        <span asp-validation-for="Name" class="text-danger"></span>
+
                     </div>
                     <!-- Email input -->
                     <div data-mdb-input-init class="form-outline mb-4">
                         <input asp-for="Email" type="email" id="form3Example3" class="form-control form-control-lg"
                                placeholder="Enter a valid email address" />
                         <label class="form-label" for="form3Example3">Email address</label>
+                        <span asp-validation-for="Email" class="text-danger"></span>
+
                     </div>
 
                     <!-- Password input -->
@@ -69,12 +75,16 @@
                         <input asp-for="Password" type="password" id="form3Example4" class="form-control form-control-lg"
                                placeholder="Enter password" />
                         <label class="form-label" for="form3Example4">Password</label>
+                        <span asp-validation-for="Password" class="text-danger"></span>
+
                     </div>
                     <!-- Confrim Password -->
                     <div data-mdb-input-init class="form-outline mb-3">
                         <input asp-for="ConfirmPassword" type="password" id="form3Example4" class="form-control form-control-lg"
                                placeholder="Confrim password" />
                         <label class="form-label" for="form3Example4">Password</label>
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+
                     </div>
 
 
