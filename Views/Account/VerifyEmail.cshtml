@@ -5,7 +5,7 @@
     ViewData["Title"] = "Verify Email";
     Layout = "~/Views/Shared/_AccountLayout.cshtml";
 }
-
+<!--
 <div class="account-container">
     <div class="account-box">
         <h2 class="text-center mb-4">Verify Email</h2>
@@ -22,10 +22,54 @@
             </div>
         </form>
     </div>
-</div>
+</div>-->
 
-@section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial.cshtml");
+
+
+
+
+<section class="vh-100">
+    <div class="container-fluid h-custom">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-md-9 col-lg-6 col-xl-5">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+                     class="img-fluid" alt="Sample image">
+            </div>
+            <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                <h2 class="text-center mb-4">Verify Email</h2>
+                <form asp-action="VerifyEmail" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <!-- Email input -->
+                    <div data-mdb-input-init class="form-outline mb-4">
+                        <input type="email" id="form3Example3" class="form-control form-control-lg"
+                               placeholder="Enter a valid email address" />
+                        <label class="form-label" for="form3Example3">Email address</label>
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="text-center text-lg-start mt-4 pt-2">
+                        <input type="submit" value="Verify" class="btn btn-success w-100 p-2" />
+                        <p class="small fw-bold mt-2 pt-1 mb-0">
+                            Don't have an account? <a asp-controller="Account" asp-action="Register" class="text-decoration-none">Register</a>
+
+
+                        </p>
+                    </div>
+                    <div class="text-center">
+                        <a asp-controller="Home" asp-action="Index" class=" btn btn-primary text-decoration-none mt-3">Back</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial.cshtml");
+        }
     }
-}
